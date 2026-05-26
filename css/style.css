@@ -1,0 +1,43 @@
+.wrapper {
+  margin-right: auto; 
+  margin-left:  auto; 
+  max-width: 960px;  
+  padding-right: 10px; 
+  padding-left:  10px; 
+}
+#navbar {
+  display: flex;                  /* Enable flexbox */
+  justify-content: space-between; /* Push items to far left & far right */
+  align-items: center;            /* Vertically center items */
+  padding: 8px;
+  background-color: darkgray;
+  color: white;
+  text-align: right;
+  vertical-align:middle;
+  min-height: 20pt;
+}
+
+.push-right {
+  margin-left: auto; /* Push this item to the far right */
+}
+
+table {
+  border-collapse: collapse; /* 枠線を一重線に */
+  width: 100%; /* テーブル幅を親要素に合わせる */
+}
+
+table th, table td {
+  border: 1px solid lightgray; /* 枠線の色と太さ */
+  padding: 5px; /* セル内の余白 */
+  text-align: center; /* テキストを中央寄せ */
+}
+
+table th {
+  background-color: lightgray; /* 見出しセルの背景色 */
+  color: #555555; /* 見出しセルの文字色 */
+}
+
+table td {
+  background-color: #ffffff; /* 通常セルの背景色 */
+  color: #333333; /* 通常セルの文字色 */
+}
