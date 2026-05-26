@@ -1,27 +1,29 @@
 <?php
 $conf = require('conf/config.inc.php');
 
-$classes = ['u' => 'User', 's' => 'Student', 'p' => 'Program', 'w' => 'Wish',];
-$defaults = ['c' => 'u', 'class' => 'User', 'action' => 'list',];
-$valid_actions = ['list', 'show', 'edit', 'save', 'delete', 'decide',];
-
-// --------------------------------------------------------------
-// リクエストを解析し、MVCモデル構築に必要な情報を抽出する。
-// 例：http://localhost/wp2026mvc/u/edit/?id=2
-
+/** 
+ リクエストを解析し、MVCモデル構築に必要な情報を抽出する。
+ 例：http://localhost/wp2026mvc/u/edit/?id=2
+*/
 $base = dirname($_SERVER['PHP_SELF']); // プロジェクト・ホームフォルダ, 例：/wp2026mvc
 $request = $_SERVER['REQUEST_URI'];    // リスクエスの絶対パス, 例：/wp2026mvc/u/edit/?id=2
 $relative = substr($request, strlen($base));//リスクエスの相対パス /u/edit/?id=2
 
-//相対パスからクラスとアクションを抽出する
+//クラスとアクションを抽出する
+$classes = ['u' => 'User', 's' => 'Student', 'p' => 'Program', 'w' => 'Wish',];
+$defaults = ['c' => 'u', 'class' => 'User', 'action' => 'list',];
+$valid_actions = ['list', 'show', 'edit', 'save', 'delete', 'decide',];
+
 $parts = explode('/', $relative);   //　'/'で区切る部分を抽出する。例：['',u,'edit','?id=2']
 $c = $parts[1] ?? $defaults['c'];   // 一文字のクラスIDを抽出する。例：u
 $class = $classes[$c] ?? $defaults['class']; // クラスのフルネームを特定する。例：User
 $action = $parts[2] ?? $defaults['action'];  // アクションを抽出する。例：list
 $args = $_GET; // 引数を取得する。例：['id'=>2]
 
-// --------------------------------------------------------------
-$app_dir = 'app';
+/** 
+ 解析結果をもとに、MVCモデルを構築する。
+*/
+ $app_dir = 'app';
 $model_dir = "{$app_dir}/models";
 $view_dir  = "{$app_dir}/views";
 $ctrl_dir  = "{$app_dir}/controllers";
@@ -43,7 +45,7 @@ $controllerClass = "{$class}Controller";
 $controller = new $controllerClass($model, $view);
 $actionFunc = "{$action}Action";
 
-// アクションを呼び出す
+// アクションを呼び出す（dispatch）
 if (method_exists($controller, $actionFunc)) {
     call_user_func_array([$controller, $actionFunc], $args);// メソッドを呼び出す。例：$controller->editAction(2);
 } else {
