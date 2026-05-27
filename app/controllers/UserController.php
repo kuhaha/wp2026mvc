@@ -54,14 +54,33 @@ class UserController extends Controller
    {
       $where = "uid='{$id}'";
       $user = $this->model->getDetail($where);
-      $uroles = $this->model->getCodeDef('uroles');
       $act = $user ? 'update' : 'insert';
+      $user = $user ?? ['uid'=>'', 'uname'=>'名前なし', 'upass'=>'', 'urole'=>1];
+      $uroles = $this->model->getCodeDef('uroles');      
       $this->view->render('user_edit', ['act'=>$act, 'user' => $user, 'uroles'=>$uroles]);
    }
 
-   public function saveAction($data)
+   public function saveAction()
    {
-      // TODO
+      $data = $_POST;
+   
+      $act = $data['act'] ?? 'insert';
+      $fields = ['uid', 'uname', 'upass', 'urole'];
+      foreach ( $data as $key=>$_){
+         if (!in_array($key, $fields)) unset($data[$key]);
+      }
+      $uid =  $data['uid'];      
+      $where = "uid='$uid'";
+      if ($act=='insert') $this->model->insert($data);
+      else $this->model->update($data, $where);
+      $this->view->redirect('/u/list');
+   }
+
+   public function deleteAction($id)
+   {
+      $where = "uid='{$id}'";
+      $this->model->delete($where);
+      $this->view->redirect('/u/list');
    }
 
 }

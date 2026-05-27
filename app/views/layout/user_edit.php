@@ -1,5 +1,6 @@
 <h3>ユーザアカウント編集</h3>
 <form action="<?= $_app_root_ ?>/u/save" method="post">
+<input type="hidden" name="act" value="<?= $act ?>">
 <table>
     <tr>
         <td width="20%">ユーザID</td><td><input type="text" name="uid" value="<?= $user['uid']?>"></td>
@@ -11,15 +12,15 @@
         <td>パスワード</th><td><input type="password" name="upass"></td>
     </tr>
     <tr>
-        <td>パスワード確認</th><td><input type="password" name="upass"></td>
+        <td>パスワード確認</th><td><input type="password" name="upass2"></td>
     </tr>
     <tr>
         <td>ユーザ種別</td>
         <td>
-            <?php foreach ($uroles as $key=>$value) { ?>
-            <?php $checked = $key==$user['urole'] ? 'checked' : '' ?>
-            <input type="radio" name="urole" value="<?= $key ?>" <?=$checked  ?>><?= $value ?>
-            <?PHP } ?> 
+<?php foreach ($uroles as $key=>$value) { ?>
+<?php $checked = $key==$user['urole'] ? 'checked' : '' ?>
+<input type="radio" name="urole" value="<?= $key ?>" <?=$checked  ?>><?= $value ?>
+<?PHP } ?> 
         </td>
     </tr>
 </table>

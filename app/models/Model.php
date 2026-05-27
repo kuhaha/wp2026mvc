@@ -59,7 +59,7 @@ abstract class Model
 
    // 条件を満たすデータを削除する（特定のテーブルを対象とする）
    public function delete ($where){
-      $sql = "DELETE * FROM %s WHERE %s";
+      $sql = "DELETE FROM %s WHERE %s";
       $sql = sprintf($sql, $this->table, $where);
       return $this->excute($sql);
    }
@@ -74,6 +74,7 @@ abstract class Model
       $fields = implode (',', $fields); 
       $values = implode (',', $values);
       $sql = "INSERT INTO %s (%s) VALUES (%s)";
+      $sql = sprintf($sql, $this->table, $fields, $values);
       return $this->excute($sql);
    }
 
