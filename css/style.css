@@ -29,7 +29,6 @@ table {
 table th, table td {
   border: 1px solid lightgray; /* 枠線の色と太さ */
   padding: 5px; /* セル内の余白 */
-  text-align: center; /* テキストを中央寄せ */
 }
 
 table th {

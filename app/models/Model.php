@@ -6,6 +6,11 @@ abstract class Model
    private $db;
    protected $table;
 
+   const CODES = [
+      'uroles' => [ 1=>'学生', 2=>'教員', 9=>'管理者'],
+      'sex' => [ 1=>'男', 2=>'女', 0=>'不詳'],
+    ]; 
+
    public function __construct($conf)
    {
       $db = new mysqli($conf['host'],$conf['user'],$conf['passwd'],$conf['dbname']);
@@ -16,12 +21,16 @@ abstract class Model
       $this->db = $db;
    }
 
-   // 問い合わせ類SQL文実行（汎用）
+   public static function getCodeDef($name){
+      return self::CODES[$name] ?? [];
+   }
+
+   // 問い合わせ類SQL文を実行（特定のテーブルに依存しない）
    public function query($sql){
       $rs = $this->db->query($sql);
       return $rs ? $rs->fetch_all( MYSQLI_ASSOC) : [];
    } 
-   // 更新類SQLの実行（汎用）
+   // 更新類SQLを実行（特定のテーブルに依存しない）
    public function excute($sql){
       $ok = $this->db->query($sql);
       return $ok ? $this->db->affected_rows : -1;
@@ -31,7 +40,7 @@ abstract class Model
       return $this->db->insert_id;
    }
 
-   // 特定テーブルから一覧用データを検索する 
+   // 一覧用データを検索する（特定のテーブルを対象とする） 
    public function getList($where=1, $orderby='', $limit=0, $offset=0){
       $sql = "SELECT * FROM %s WHERE %s";
       $sql = sprintf($sql, $this->table, $where);
@@ -40,7 +49,7 @@ abstract class Model
       return $this->query($sql);
    }
 
-   // 特定テーブルからデータを1行検索する   
+   // 詳細データを1行検索する（特定のテーブルを対象とする）   
    public function getDetail($where){
       $sql = "SELECT * FROM %s WHERE %s";
       $sql = sprintf($sql, $this->table, $where);
@@ -48,14 +57,14 @@ abstract class Model
       return $rs ? $rs->fetch_assoc() : [];
    }
 
-   // 特定テーブルから条件を満たすデータを削除する
+   // 条件を満たすデータを削除する（特定のテーブルを対象とする）
    public function delete ($where){
       $sql = "DELETE * FROM %s WHERE %s";
       $sql = sprintf($sql, $this->table, $where);
       return $this->excute($sql);
    }
 
-   // 特定テーブルにデータを1行追加する
+   // 1行のデータを追加する（特定テーブルを対象とする）
    public function insert ($data){
       $fields = $values = [];
       foreach ($data as $key=>$value){
@@ -68,7 +77,7 @@ abstract class Model
       return $this->excute($sql);
    }
 
-   // 特定テーブルを更新する
+   // データを更新する（特定のテーブルを対象とする）
    public function update ($data, $where){
       $values = [];
       foreach ($data as $key=>$value){
@@ -79,6 +88,10 @@ abstract class Model
       $sql = "UPDATE %s SET %s WHERE %s";
       $sql = sprintf($sql, $this->table, $set_values, $where);
       return $this->excute($sql);
+   }
+
+   public function sanitize($string){
+      return htmlspecialchars($string);
    }
 
 }

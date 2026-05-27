@@ -10,10 +10,8 @@ $request = $_SERVER['REQUEST_URI'];    // リスクエスの絶対パス, 例：
 $relative = substr($request, strlen($base));//リスクエスの相対パス /u/edit/?id=2
 
 //クラスとアクションを抽出する
-$classes = ['u' => 'User', 's' => 'Student', 'p' => 'Program', 'w' => 'Wish',];
-$defaults = ['c' => 'u', 'class' => 'User', 'action' => 'list',];
-$valid_actions = ['list', 'show', 'edit', 'save', 'delete', 'decide',];
-
+$defaults = $conf['mvc']['defaults'];
+$classes =  $conf['mvc']['classes'];
 $parts = explode('/', $relative);   //　'/'で区切る部分を抽出する。例：['',u,'edit','?id=2']
 $c = $parts[1] ?? $defaults['c'];   // 一文字のクラスIDを抽出する。例：u
 $class = $classes[$c] ?? $defaults['class']; // クラスのフルネームを特定する。例：User
@@ -23,7 +21,7 @@ $args = $_GET; // 引数を取得する。例：['id'=>2]
 /** 
  解析結果をもとに、MVCモデルを構築する。
 */
- $app_dir = 'app';
+$app_dir = 'app';
 $model_dir = "{$app_dir}/models";
 $view_dir  = "{$app_dir}/views";
 $ctrl_dir  = "{$app_dir}/controllers";

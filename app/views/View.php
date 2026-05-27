@@ -7,7 +7,7 @@ class View
    function __construct($base)
    {
       $this->url_base = rtrim($base, DIRECTORY_SEPARATOR);
-      $this->shared_vars['_app_root_'] = $base;
+      $this->shared_vars['_app_root_'] = $this->url_base;
    }
 
    public function share($var, $value)
@@ -15,7 +15,7 @@ class View
       $this->shared_vars[$var] = $value;
    }
 
-   public function render(string $layout, array $data)
+   public function render(string $layout, array $data=[])
    {
       ob_start(); //バッファをオンにして出力をせず一時保存する
       // 連想配列から展開し変数として利用可能にする。
