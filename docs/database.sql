@@ -1,4 +1,3 @@
-```sql
 CREATE TABLE tbl_student(
  sid CHAR(5) PRIMARY KEY, -- 学籍番号
  sname VARCHAR(16) NOT NULL, -- 氏名
@@ -31,9 +30,6 @@ CREATE TABLE tbl_user(
  urole INT -- ユーザ種別
 );
 
-```
-
-```sql
 INSERT INTO tbl_student VALUES
 ('S0001','斎藤 唯人', 1,'090-5918-5777','s0001@st.kyusan-u.ac.jp',29,3.93,0),
 ('S0002','谷口 志穂', 2,'090-1935-5508','s0002@st.kyusan-u.ac.jp',23,1.89,0),
@@ -81,5 +77,3 @@ INSERT INTO tbl_wish VALUES
  INSERT INTO tbl_user
  SELECT LOWER(sid) AS uid, sname AS uname, '1234' AS upass,1 AS urole 
  FROM tbl_student;
-
-```
