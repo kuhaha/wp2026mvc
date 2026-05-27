@@ -14,8 +14,6 @@
         <td>パスワード確認</th><td><input type="password" name="upass"></td>
     </tr>
     <tr>
-    <tr>
-    <tr>
         <td>ユーザ種別</td>
         <td>
             <?php foreach ($uroles as $key=>$value) { ?>

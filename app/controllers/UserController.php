@@ -38,6 +38,13 @@ class UserController extends Controller
       $this->view->render('user_list', ['users' => $users]);
    }
 
+   public function showAction($id)
+   {
+      $where = "uid='{$id}'";
+      $user = $this->model->getDetail($where);
+      $this->view->render('user_show', ['user'=>$user]);
+   }
+
    public function editAction($id=null)
    {
       $where = "uid='{$id}'";
