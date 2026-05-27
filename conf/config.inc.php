@@ -19,13 +19,14 @@ return [
         ],
 
         'actions' => [//有効なアクション
+            'home',   // ホーム
             'list',   // 一覧
             'show',   // 詳細
             'edit',   // 編集
             'save',   // 保存
             'delete', // 削除
-            'register',  // 希望登録
-            'decide', // 決定
+            'register', // 希望登録
+            'decide', // 配属決定
             'login',  // ログイン
             'logout', // ログアウト
         ],
@@ -33,7 +34,7 @@ return [
         'defaults' => [
             'c' => 'u', //デフォルトのクラス略称
             'class' => 'User', //デフォルトのクラス名
-            'action' => 'list',//デフォルトのアクション
+            'action' => 'home',//デフォルトのアクション
         ],
     ],
     

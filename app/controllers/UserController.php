@@ -17,11 +17,16 @@ class UserController extends Controller
          $_SESSION['uid'] = $user['uid'];
          $_SESSION['uname'] = $user['uname'];
          $_SESSION['urole'] = $user['urole'];
-         $this->view->redirect('/u/list');
+         $this->view->redirect('/u/home');
       }
       else{
          $this->view->render('error_msg', ['message'=>'ログイン失敗：ユーザIDかパスワードが間違っています。']);
       }
+   }
+
+   function homeAction()
+   {
+      $this->view->render('user_home');
    }
 
    public function logoutAction()
