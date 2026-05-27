@@ -25,6 +25,6 @@
         </td>
     </tr>
 </table>
-<input type="submit" name="ログイン">
+<input type="submit" name="保存">
 <input type="reset" value="取消">
 </form>
