@@ -1,5 +1,5 @@
 <h3>ユーザアカウント編集</h3>
-<form action="/u/auth" method="post">
+<form action="<?= $_app_root_ ?>/u/save" method="post">
 <table>
     <tr>
         <td width="20%">ユーザID</td><td><input type="text" name="uid" value="<?= $user['uid']?>"></td>
