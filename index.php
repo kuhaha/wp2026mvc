@@ -5,9 +5,9 @@ $conf = require('conf/config.inc.php');
  リクエストを解析し、MVCモデル構築に必要な情報を抽出する。
  例：http://localhost/wp2026mvc/u/edit/?id=2
 */
-$base = dirname($_SERVER['PHP_SELF']); // プロジェクト・ホームフォルダ, 例：/wp2026mvc
-$request = $_SERVER['REQUEST_URI'];    // リスクエスの絶対パス, 例：/wp2026mvc/u/edit/?id=2
-$relative = substr($request, strlen($base));//リスクエスの相対パス /u/edit/?id=2
+$base = dirname($_SERVER['PHP_SELF']); // プロジェクト・ホームディレクトリ, 例：/wp2026mvc
+$request = $_SERVER['REQUEST_URI'];    // リスクエストの絶対パス, 例：/wp2026mvc/u/edit/?id=2
+$relative = substr($request, strlen($base));//リスクエストの相対パス /u/edit/?id=2
 
 //クラスとアクションを抽出する
 $defaults = $conf['mvc']['defaults'];
