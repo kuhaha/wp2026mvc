@@ -51,7 +51,7 @@
   - `__contruct($base)`：プロジェクト・ホームディレクトリ`$base`を引数にビューを初期化するコンストラクタ。
   - `render($layout, $data)`：画面レイアウトを元に、`$data`を使って画面を生成する。
   - `redirect($url)`：引数の**URL**へ画面を転送する。 URLは以下のパターンに従う。
-    - 「`/クラスID/アクション/`」、「`/クラスID/アクション`」、「`/クラスID/アクション/?key=val`」、「`/クラスID/アクション?key=val`」となる。
+    - 「`/クラスID/アクション/`」、「`/クラスID/アクション`」、「`/クラスID/アクション/?key=val`」、「`/クラスID/アクション?key=val`」
     - 例：`/u/list/`または、`/u/list`、`/u/edit/?id=s0001`または、`/u/edit?id=s0001`
   - `share($var, $value)`：画面レイアウトに共通の変数をシェアする。
 - `app/views/UserView.php`：
