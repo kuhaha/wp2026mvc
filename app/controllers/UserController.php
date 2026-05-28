@@ -3,11 +3,19 @@ include_once 'Controller.php';
 
 class UserController extends Controller
 {
+   /**ホームページ */
+   function homeAction()
+   {
+      $this->view->render('user_home');
+   }
+
+   /**ログイン */
    public function loginAction()
    {
       $this->view->render('user_login');
    }
 
+   /**パスワード認証 */
    public function authAction()
    {
       $uid = $_POST['uid'];
@@ -20,15 +28,11 @@ class UserController extends Controller
          $this->view->redirect('/u/home');
       }
       else{
-         $this->view->render('error_msg', ['message'=>'ログイン失敗：ユーザIDかパスワードが間違っています。']);
+         $this->view->render('msg_error', ['message'=>'エラー：ユーザIDかパスワードが間違っています。']);
       }
    }
 
-   function homeAction()
-   {
-      $this->view->render('user_home');
-   }
-
+   /**ログアウト */
    public function logoutAction()
    {
       session_start();
@@ -37,19 +41,26 @@ class UserController extends Controller
       $this->view->redirect('/u/login');
    }
 
+   /**ユーザ一覧 */
    public function listAction()
    {
       $users = $this->model->getList();
       $this->view->render('user_list', ['users' => $users]);
    }
 
+   /**詳細確認 */
    public function showAction($id)
    {
       $where = "uid='{$id}'";
       $user = $this->model->getDetail($where);
-      $this->view->render('user_show', ['user'=>$user]);
+      if ($user) {
+         $this->view->render('user_show', ['user'=>$user]);
+      }else{
+         $this->view->render('msg_error', ['message'=>"エラー：対象のユーザ「{$id}」が存在しません。"]);
+      }
    }
-
+   
+   /**編集 */
    public function editAction($id=null)
    {
       $where = "uid='{$id}'";
@@ -60,6 +71,7 @@ class UserController extends Controller
       $this->view->render('user_edit', ['act'=>$act, 'user' => $user, 'uroles'=>$uroles]);
    }
 
+   /** 結果保存 */
    public function saveAction()
    {
       $data = $_POST;
@@ -76,7 +88,26 @@ class UserController extends Controller
       $this->view->redirect('/u/list');
    }
 
+   /**  削除確認 */
    public function deleteAction($id)
+   {
+      $where = "uid='{$id}'";
+      $user = $this->model->getDetail($where);
+      if ($user){
+         $this->view->render('msg_confirm', [
+            'title'=>'削除確認',
+            'message'=>"ユーザ「{$user['uname']}」（{$user['uid']}）を完全に削除します。<br/>続けてもよろしいでしょうか？", 
+            'url' => "/u/deleted/?id={$id}", 
+            'label'=>'OK'
+            ]
+         );
+      }else{
+         $this->view->render('msg_error', ['message'=>"エラー：削除対象のユーザ「{$id}」が存在しません。"]);
+      }
+   }
+
+   /**  完全削除 */
+   public function deletedAction($id)
    {
       $where = "uid='{$id}'";
       $this->model->delete($where);
