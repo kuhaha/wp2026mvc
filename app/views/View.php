@@ -15,8 +15,9 @@ class View
       $this->shared_vars[$var] = $value;
    }
 
-   public function render(string $layout, array $data=[])
+   public function render($layout, $data=[])
    {
+      include 'HtmlHelper.php';      
       ob_start(); //バッファをオンにして画面出力を一時保留する
 
       // 連想配列から展開し変数として利用可能にする。

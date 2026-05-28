@@ -1,1 +1,1 @@
-<h3 style="color:red;"><?= $message ?></h3>
+<h4 style="color:red;"><?= $message ?></h4>

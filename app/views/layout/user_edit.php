@@ -17,10 +17,7 @@
     <tr>
         <td>ユーザ種別</td>
         <td>
-<?php foreach ($uroles as $key=>$value) { ?>
-<?php $checked = $key==$user['urole'] ? 'checked' : '' ?>
-<input type="radio" name="urole" value="<?= $key ?>" <?=$checked  ?>><?= $value ?>
-<?PHP } ?> 
+<?php echo HtmlHelper::radio($uroles, 'urole', $user['urole']);?>
         </td>
     </tr>
 </table>

@@ -5,17 +5,18 @@ $conf = require('conf/config.inc.php');
  リクエストを解析し、MVCモデル構築に必要な情報を抽出する。
  例：http://localhost/wp2026mvc/u/edit/?id=2
 */
-$base = dirname($_SERVER['PHP_SELF']); // プロジェクト・ホームディレクトリ, 例：/wp2026mvc
-$request = $_SERVER['REQUEST_URI'];    // リスクエストの絶対パス, 例：/wp2026mvc/u/edit/?id=2
-$relative = substr($request, strlen($base));//リスクエストの相対パス /u/edit/?id=2
-
-//クラスとアクションを抽出する
 $defaults = $conf['mvc']['defaults'];
 $classes =  $conf['mvc']['classes'];
-$parts = explode('/', $relative);   //　'/'で区切る部分を抽出する。例：['',u,'edit','?id=2']
-$c = $parts[1] ?? $defaults['c'];   // 一文字のクラスIDを抽出する。例：u
-$class = $classes[$c] ?? $defaults['class']; // クラスのフルネームを特定する。例：User
-$action = $parts[2] ?? $defaults['action'];  // アクションを抽出する。例：list
+$base = dirname($_SERVER['PHP_SELF']); // プロジェクト・ホームディレクトリ, 例：/wp2026mvc
+$path = $_SERVER['REDIRECT_URL']; // リスクエストの絶対パス, 例：/wp2026mvc/u/edit/
+$path = substr($path, strlen($base)); // リスクエストの相対パス。例： /u/edit/
+$path = trim($path, '/'); // 前後の'/'を取り除く。例：u/edit
+
+//クラスとアクションを抽出する
+$parts = explode('/', $path);   // '/'で区切った部分を抽出し配列にする。例：['u','edit']
+$c = $parts[0] ?? $defaults['c'];   // クラスIDを抽出する。例：u
+$class = $classes[$c] ?? $defaults['class']; // 実際のクラス名を特定する。例：User
+$action = $parts[1] ?? $defaults['action'];  // アクションを抽出する。例：list
 $args = $_GET; // 引数を取得する。例：['id'=>2]
 
 /** 
