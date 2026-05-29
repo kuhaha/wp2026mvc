@@ -2,6 +2,7 @@
 <html><head>
 <meta http-equiv="Content-TYPE" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="<?=$_app_root_ ?>/css/style.css">
+<link rel="stylesheet" type="text/css" href="<?=$_app_root_ ?>/css/modal.css">
 <title><?=$_app_name_ ?></title>
 </head>
 <body>

@@ -33,10 +33,15 @@ class View
 
       ob_end_flush(); //出力用バッファをフラッシュする
    }
-   
+
+   // 相対パス（例「u/edit/?id=s00xx」）から絶対パスへ変換（例えば、「/wp2026mvc/u/edit/?id=s00xx」）
+   public function at(string $relative_url){
+      return  $this->url_base . '/' . ltrim($relative_url, '/');
+
+   } 
    public function redirect(string $url)
    {
-      $real_url = $this->url_base . DIRECTORY_SEPARATOR . ltrim($url, DIRECTORY_SEPARATOR);
+      $real_url = $this->at($url);
       header("Location:{$real_url}");
    }
 }

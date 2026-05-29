@@ -40,3 +40,36 @@ table td {
   background-color: #ffffff; /* 通常セルの背景色 */
   color: #333333; /* 通常セルの文字色 */
 }
+
+.a-btn {
+    background-color: #04AA6D; /* Green background */
+    border: none; /* Remove default border */
+    color: white; /* White text */
+    padding: 4px 18px; /* Space inside button */
+    text-align: center;
+    font-size: 16px;
+    display: inline-block;
+    margin-top: 10px;
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer on hover */
+    transition: background-color 0.3s, transform 0.2s; /* Smooth effects */
+}
+
+.a-btn:hover {
+  background-color: #0e6d4a; /* Darker green on hover */
+  transform: translateY(-2px); /* Slight lift effect */
+}
+
+a.a-btn{
+  text-decoration: none;
+}
+
+.bg-danger{
+  background-color: red;
+}
+.bg-primary{
+  background-color: blue;
+}
+.bg-success{
+  background-color: green;
+}
