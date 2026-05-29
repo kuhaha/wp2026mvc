@@ -65,11 +65,20 @@ a.a-btn{
 }
 
 .bg-danger{
-  background-color: red;
+  background-color: rgb(192, 18, 18);
 }
 .bg-primary{
   background-color: blue;
 }
+.bg-secondary{
+  background-color: darkgray;
+}
 .bg-success{
   background-color: green;
+}
+.bg-warning{
+  background-color: orange;
+}
+.bg-dark{
+  background-color: black;
 }

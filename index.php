@@ -8,7 +8,7 @@ $conf = require('conf/config.inc.php');
 $defaults = $conf['mvc']['defaults'];
 $classes =  $conf['mvc']['classes'];
 $base = dirname($_SERVER['PHP_SELF']); // プロジェクト・ホームディレクトリ, 例：/wp2026mvc
-$path = $_SERVER['REDIRECT_URL']; // リスクエストの絶対パス, 例：/wp2026mvc/u/edit/
+$path = $_SERVER['REDIRECT_URL']??$_SERVER['REQUEST_URI']; // リスクエストの絶対パス, 例：/wp2026mvc/u/edit/
 $path = substr($path, strlen($base)); // リスクエストの相対パス。例： /u/edit/
 $path = trim($path, '/'); // 前後の'/'を取り除く。例：u/edit
 

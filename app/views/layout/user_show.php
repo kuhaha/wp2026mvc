@@ -10,4 +10,4 @@
         <td>ユーザ種別</td><td><?= $user['urole'] ?></td>
     </tr>
 </table>
-<a class="a-btn" href="<?=$_app_root_ ?>/u/delete?id=<?= $user['uid'] ?>">削除</a>
+<a class="a-btn bg-warning" href="<?=$_app_root_ ?>/u/delete?id=<?= $user['uid'] ?>">削除</a>
