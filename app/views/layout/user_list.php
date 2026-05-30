@@ -9,7 +9,7 @@
         <tr>
             <td><?= $user['uid'] ?></td>
             <td><?= $user['uname'] ?></td>
-            <td><?= $user['urole'] ?></td>
+            <td><?= $user['urole_name'] ?></td>
         </tr>
     <?php } ?>
 </table>

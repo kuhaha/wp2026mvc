@@ -45,6 +45,13 @@ class UserController extends Controller
    public function listAction()
    {
       $users = $this->model->getList();
+      
+      //各ユーザの種別（整数のコード）から日本語名を求める
+      $uroles = $this->model->getCodeDef('uroles');
+      for ($i=0; $i<count($users); $i++){
+         $role = $users[$i]['urole'];
+         $users[$i]['urole_name'] = $uroles[$role] ?? '不詳';
+      }
       $this->view->render('user_list', ['users' => $users]);
    }
 

@@ -24,9 +24,11 @@ return [
             'show',   // 詳細
             'edit',   // 編集
             'save',   // 保存
-            'delete', // 削除
+            'delete', // 削除確認
+            'deleted',// 削除実行
             'register', // 希望登録
             'decide', // 配属決定
+            'auth',   // ユーザ認証
             'login',  // ログイン
             'logout', // ログアウト
         ],

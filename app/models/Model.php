@@ -8,10 +8,10 @@ abstract class Model
 
    const CODES = [
       'uroles' => [ 1=>'学生', 2=>'教員', 9=>'管理者'],
-      'sex' => [ 1=>'男', 2=>'女', 0=>'不詳'],
+      'sex' => [ 0=>'不詳', 1=>'男', 2=>'女', ],
     ]; 
 
-   public function __construct($conf)
+   public function __construct(array $conf)
    {
       $db = new mysqli($conf['host'],$conf['user'],$conf['passwd'],$conf['dbname']);
       if ($db->connect_errno) {
@@ -21,27 +21,34 @@ abstract class Model
       $this->db = $db;
    }
 
-   public static function getCodeDef($name){
+   // 各種コードの定義を返す。
+   // 引数$nameは、コードの種別名。例：'urole', 'sex'。
+   public static function getCodeDef(string $name): array
+   {
       return self::CODES[$name] ?? [];
    }
 
    // 問い合わせ類SQL文を実行（特定のテーブルに依存しない）
-   public function query($sql){
+   public function query(string $sql): array
+   {
       $rs = $this->db->query($sql);
       return $rs ? $rs->fetch_all( MYSQLI_ASSOC) : [];
    } 
    // 更新類SQLを実行（特定のテーブルに依存しない）
-   public function excute($sql){
+   public function excute(string $sql): int
+   {
       $ok = $this->db->query($sql);
       return $ok ? $this->db->affected_rows : -1;
    }
 
-   public function insertId(){
+   public function insertId(): int
+   {
       return $this->db->insert_id;
    }
 
    // 一覧用データを検索する（特定のテーブルを対象とする） 
-   public function getList($where=1, $orderby='', $limit=0, $offset=0){
+   public function getList(string $where='1', string $orderby='', int $limit=0, int $offset=0): array
+   {
       $sql = "SELECT * FROM %s WHERE %s";
       $sql = sprintf($sql, $this->table, $where);
       $sql .= $orderby ? " ORDER BY {$orderby}" : '';
@@ -50,7 +57,8 @@ abstract class Model
    }
 
    // 詳細データを1行検索する（特定のテーブルを対象とする）   
-   public function getDetail($where){
+   public function getDetail(string $where): array
+   {
       $sql = "SELECT * FROM %s WHERE %s";
       $sql = sprintf($sql, $this->table, $where);
       $rs = $this->db->query($sql);
@@ -58,14 +66,16 @@ abstract class Model
    }
 
    // 条件を満たすデータを削除する（特定のテーブルを対象とする）
-   public function delete ($where){
+   public function delete (string $where): int
+   {
       $sql = "DELETE FROM %s WHERE %s";
       $sql = sprintf($sql, $this->table, $where);
       return $this->excute($sql);
    }
 
    // 1行のデータを追加する（特定テーブルを対象とする）
-   public function insert ($data){
+   public function insert (array $data): int
+   {
       $fields = $values = [];
       foreach ($data as $key=>$value){
          $fields[] = $key;
@@ -79,7 +89,8 @@ abstract class Model
    }
 
    // データを更新する（特定のテーブルを対象とする）
-   public function update ($data, $where){
+   public function update (array $data, string $where): int
+   {
       $values = [];
       foreach ($data as $key=>$value){
          $value = is_numeric($value) ? $value : "'{$value}'";
@@ -91,8 +102,9 @@ abstract class Model
       return $this->excute($sql);
    }
 
-   public function sanitize($string){
-      return htmlspecialchars($string);
+   public function sanitize(string $str): string
+   {
+      return htmlspecialchars($str);
    }
 
 }

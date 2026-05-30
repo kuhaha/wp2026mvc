@@ -1,21 +1,21 @@
 <?php
 class View
 {
-   private $url_base = '';
-   private $shared_vars = [];
+   private string $url_base = '';
+   private array $shared_vars = [];
 
-   function __construct($base)
+   function __construct(string $base)
    {
       $this->url_base = rtrim($base, DIRECTORY_SEPARATOR);
       $this->shared_vars['_app_root_'] = $this->url_base;
    }
 
-   public function share($var, $value)
+   public function share(string $var, mixed $value)
    {
       $this->shared_vars[$var] = $value;
    }
 
-   public function render($layout, $data=[])
+   public function render(string $layout, array $data=[]): void
    {
       include 'HtmlHelper.php';      
       ob_start(); //バッファをオンにして画面出力を一時保留する
@@ -35,11 +35,12 @@ class View
    }
 
    // 相対パス（例「u/edit/?id=s00xx」）から絶対パスへ変換（例えば、「/wp2026mvc/u/edit/?id=s00xx」）
-   public function at(string $relative_url){
+   public function at(string $relative_url): string
+   {
       return  $this->url_base . '/' . ltrim($relative_url, '/');
 
    } 
-   public function redirect(string $url)
+   public function redirect(string $url): void
    {
       $real_url = $this->at($url);
       header("Location:{$real_url}");
