@@ -1,17 +1,20 @@
 <?php
 class HtmlHelper
 {
-    public static function ol($options, $attributes=[]){
+    public static function ol(array $options, array $attributes=[]): string
+    {
         $tag = self::tag('li', $options, false, $attributes);
         return self::tag('ol', $tag);
     }
 
-    public static function ul($options, $attributes=[]){
+    public static function ul(array $options, array $attributes=[]): string
+    {
         $tag = self::tag('li', $options, false, $attributes);
         return self::tag('ul', $tag);
     }
 
-    public static function radio($options, $name, $checked=null, $attributes=[]){
+    public static function radio(array $options, string $name, mixed $checked=null, array $attributes=[])
+    {
         $tag = '';
         foreach ($options as $value => $label){
             $_attributes = $attributes;
@@ -24,7 +27,8 @@ class HtmlHelper
         return $tag;
     }
 
-    public static function checkbox($options, $name, $checked=[], $attributes=[]){
+    public static function checkbox(array $options, string $name, array $checked=[], array $attributes=[]): string
+    {
         $tag = '';
         foreach ($options as $value => $label){
             $_attributes = $attributes;
@@ -39,7 +43,8 @@ class HtmlHelper
     }
 
 
-    public static function select($options, $name, $selected=null, $attributes=[]){
+    public static function select(array $options, array $name, mixed $selected=null, array $attributes=[]): string
+    {
         $tag = '';
         foreach ($options as $value => $label){
             $_attributes = ['value'=>$value];
@@ -52,7 +57,7 @@ class HtmlHelper
     }
 
 
-    public static function tag($tagname, $content='', $void=false, $attributes=[])
+    public static function tag(string $tagname, array|string $content='', bool $void=false, array $attributes=[]): string
     {
         $attr = '';
         foreach ($attributes as $key => $value){
@@ -70,5 +75,4 @@ class HtmlHelper
         }
         return $void ? "{$open_tag}{$content}" : "{$open_tag}{$content}{$close_tag}"; 
     }
-
 }
