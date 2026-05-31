@@ -1,5 +1,5 @@
 <h3>ユーザアカウント編集</h3>
-<form action="<?= $_app_root_ ?>/u/save" method="post">
+<form action="<?= $_appRoot_ ?>/u/save" method="post">
 <input type="hidden" name="act" value="<?= $act ?>">
 <table>
     <tr>
@@ -17,7 +17,7 @@
     <tr>
         <td>ユーザ種別</td>
         <td>
-<?php echo HtmlHelper::radio($uroles, 'urole', $user['urole']);?>
+<?php echo TagHelper::radio($uroles, 'urole', $user['urole']);?>
         </td>
     </tr>
 </table>

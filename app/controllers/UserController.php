@@ -64,7 +64,7 @@ class UserController extends Controller
          $uroles = $this->model->getCodeDef('uroles');
          $role = $user['urole'];
          $user['urole_name'] = $uroles[$role] ?? '不詳';
-         $this->view->render('user_show', ['user'=>$user]);
+         $this->view->render('user_show-modal', ['user'=>$user]);
       }else{
          $this->view->render('msg_error', ['message'=>"エラー：対象のユーザ「{$id}」が存在しません。"]);
       }

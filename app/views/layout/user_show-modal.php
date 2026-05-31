@@ -18,9 +18,9 @@
             &times;
         </button>
         <h3>削除確認</h3>
-        <p>この項目は本当に削除しますか？</p>
-        <a class="ok-btn" href="<?= $_app_root_ ?>/u/deleted?id=<?= $user['uid'] ?>">OK</a>
+        <p>ユーザ<?= $user['uname'] ?>（<?= $user['uid']?>）を本当に削除しますか？</p>
+        <a class="ok-btn" href="<?= $_appRoot_ ?>/u/deleted?id=<?= $user['uid'] ?>">OK</a>
     </div>
 </div>
 <!-- モーダルの処理を実施するスクリプト -->
-<script type="text/javascript" src="<?= $_app_root_ ?>/js/modal-window.js"></script>
+<script type="text/javascript" src="<?= $_appRoot_ ?>/js/modal-window.js"></script>

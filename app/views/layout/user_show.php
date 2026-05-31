@@ -10,5 +10,5 @@
         <td>ユーザ種別</td><td><?= $user['urole_name'] ?></td>
     </tr>
 </table>
-<a class="a-btn bg-primary" href="<?=$_app_root_ ?>/u/edit?id=<?= $user['uid'] ?>">編集</a>
-<a class="a-btn bg-warning" href="<?=$_app_root_ ?>/u/delete?id=<?= $user['uid'] ?>">削除</a>
+<a class="a-btn bg-primary" href="<?=$_appRoot_ ?>/u/edit?id=<?= $user['uid'] ?>">編集</a>
+<a class="a-btn bg-warning" href="<?=$_appRoot_ ?>/u/delete?id=<?= $user['uid'] ?>">削除</a>

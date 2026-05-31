@@ -2,14 +2,19 @@
 class View
 {
    private string $url_base = '';
+   
    private array $shared_vars = [];
 
    function __construct(string $base)
    {
-      $this->url_base = rtrim($base, DIRECTORY_SEPARATOR);
-      $this->shared_vars['_app_root_'] = $this->url_base;
+      $this->url_base = rtrim($base, '/');
+      $this->shared_vars['_appRoot_'] = $this->url_base;
    }
 
+   /**  複数の画面間に共通する変数を定義する。
+    * 引数：string  $var - 変数名となる文字列。mixed $value - 変数の値。
+    *   他の変数名と被らないように、'_camelCase_'のように初と最初にアンダーバー'_'を付ける 
+   */       
    public function share(string $var, mixed $value)
    {
       $this->shared_vars[$var] = $value;
@@ -17,7 +22,7 @@ class View
 
    public function render(string $layout, array $data=[]): void
    {
-      include 'HtmlHelper.php';      
+      include 'TagHelper.php';      
       ob_start(); //バッファをオンにして画面出力を一時保留する
 
       // 連想配列から展開し変数として利用可能にする。

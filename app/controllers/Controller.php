@@ -10,6 +10,6 @@ class Controller
    }
 
    function errorAction($msg){
-      $this->view->render('error_msg', ['message' => $msg]);
+      $this->view->render('msg_error', ['message' => $msg]);
    }
 }
