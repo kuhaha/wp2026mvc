@@ -7,7 +7,7 @@
         <td>氏名</th><td><?= $user['uname'] ?></td>
     </tr>
     <tr>
-        <td>ユーザ種別</td><td><?= $user['urole'] ?></td>
+        <td>ユーザ種別</td><td><?= $user['urole_name'] ?></td>
     </tr>
 </table>
 <button class="open-modal open-btn" data-modal="delete">削除</button>

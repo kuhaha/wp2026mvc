@@ -16,6 +16,12 @@
 
 
 ```html
+
+<!--
+モーダルボタン：モーダルウィンドウを開くボタン（同じページに複数使用可能）
+data-modal="ID"のIDは数字でなくでもよいが、一意性を保つ必要がある。
+モーダル本体にあるid="modal-ID"、閉じるボタンdata-modal="ID"と同じものでないといけない
+-->
 <button class="open-modal open-btn" data-modal="1">通知</button>
 <button class="open-modal open-btn" data-modal="2">確認</button>
 

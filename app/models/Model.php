@@ -41,6 +41,7 @@ abstract class Model
       return $ok ? $this->db->affected_rows : -1;
    }
 
+   // 直近自動生成されたIDの値を返す
    public function insertId(): int
    {
       return $this->db->insert_id;
@@ -62,7 +63,7 @@ abstract class Model
       $sql = "SELECT * FROM %s WHERE %s";
       $sql = sprintf($sql, $this->table, $where);
       $rs = $this->db->query($sql);
-      return $rs ? $rs->fetch_assoc() : [];
+      return $rs->fetch_assoc() ?? [];
    }
 
    // 条件を満たすデータを削除する（特定のテーブルを対象とする）
@@ -101,7 +102,7 @@ abstract class Model
       $sql = sprintf($sql, $this->table, $set_values, $where);
       return $this->excute($sql);
    }
-
+   // 文字列をサニタイズ（無害化）する
    public function sanitize(string $str): string
    {
       return htmlspecialchars($str);

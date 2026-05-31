@@ -1,6 +1,11 @@
 <?php
 $conf = require('conf/config.inc.php');
 
+$app_dir = 'app';
+$model_dir = "{$app_dir}/models";
+$view_dir  = "{$app_dir}/views";
+$ctrl_dir  = "{$app_dir}/controllers";
+
 /** 
  リクエストを解析し、MVCモデル構築に必要な情報を抽出する。
  例：http://localhost/wp2026mvc/u/edit/?id=2
@@ -22,10 +27,6 @@ $args = $_GET; // 引数を取得する。例：['id'=>2]
 /** 
  解析結果をもとに、MVCモデルを構築する。
 */
-$app_dir = 'app';
-$model_dir = "{$app_dir}/models";
-$view_dir  = "{$app_dir}/views";
-$ctrl_dir  = "{$app_dir}/controllers";
 
 // モデルmodel
 include "{$model_dir}/{$class}Model.php";
