@@ -1,4 +1,5 @@
 <?php
+
 return [
     'app' =>[
         'name' => '教育プログラム配属Webシステム2026',
@@ -11,7 +12,7 @@ return [
     ],
 
     'mvc'=>[
-        'classes'=> [// MVCクラス：クラス略称=>クラス名
+        'classes'=> [// MVCクラス：クラスID=>クラス名
             'u' => 'User',    //アカウント  
             's' => 'Student', //学生 
             'p' => 'Program', //教育プログラム
@@ -34,7 +35,7 @@ return [
         ],
 
         'defaults' => [
-            'c' => 'u', //デフォルトのクラス略称
+            'c' => 'u', //デフォルトのクラスID
             'class' => 'User', //デフォルトのクラス名
             'action' => 'home',//デフォルトのアクション
         ],

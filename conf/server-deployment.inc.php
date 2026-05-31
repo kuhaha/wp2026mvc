@@ -1,4 +1,5 @@
 <?php
+
 // 本番環境のサーバー設定（www-pg.is.kyusan-u.ac.jpを使用する予定）
 return [
     'db'  =>[//データベースサーバーの接続情報
