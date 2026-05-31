@@ -13,7 +13,7 @@ $ctrl_dir  = "{$app_dir}/controllers";
 
 /** 
  リクエストを解析し、MVCモデル構築に必要な情報を抽出する。
- 例：http://localhost/wp2026mvc/u/edit/?id=s0002
+ 例：http://www.example.jp/wp2026mvc/u/edit/?id=s0002
 */
 $defaults = $conf['mvc']['defaults'];
 $classes =  $conf['mvc']['classes'];
@@ -34,18 +34,18 @@ $args = $_GET; // 引数を取得する。例：['id'=>s0002]
 */
 
 // モデルmodel
-include "{$model_dir}/{$class}Model.php";
+require "{$model_dir}/{$class}Model.php";
 $modelClass = "{$class}Model";
 $model = new $modelClass($server['db']);
 
 // ビューview
-include "{$view_dir}/{$class}View.php";
+require "{$view_dir}/{$class}View.php";
 $viewClass = "{$class}View";
 $view = new $viewClass($base);
 $view->share('_appName_', $conf['app']['name']);//すべてのビューにこの変数をシェアする
 
 //コントローラーcontroller
-include "{$ctrl_dir}/{$class}Controller.php";
+require "{$ctrl_dir}/{$class}Controller.php";
 $controllerClass = "{$class}Controller";
 $controller = new $controllerClass($model, $view);
 $actionFunc = "{$action}Action";
