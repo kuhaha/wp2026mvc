@@ -1,5 +1,10 @@
 <?php
+//アプリケーション全体の設定ファイルを読み込む
 $conf = require('conf/config.inc.php');
+
+//サーバー別の設定ファイルを読み込む（必要に応じて、片方をコメントアウトする）
+$server = require('conf/server-development.inc.php'); //開発用サーバー環境を使用する場合
+// $server = require('conf/server-deployment.inc.php');//公開用サーバー環境を使用する場合
 
 $app_dir = 'app';
 $model_dir = "{$app_dir}/models";
@@ -31,7 +36,7 @@ $args = $_GET; // 引数を取得する。例：['id'=>s0002]
 // モデルmodel
 include "{$model_dir}/{$class}Model.php";
 $modelClass = "{$class}Model";
-$model = new $modelClass($conf['db']);
+$model = new $modelClass($server['db']);
 
 // ビューview
 include "{$view_dir}/{$class}View.php";

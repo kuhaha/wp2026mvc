@@ -64,13 +64,14 @@ class UserController extends Controller
          $uroles = $this->model->getCodeDef('uroles');
          $role = $user['urole'];
          $user['urole_name'] = $uroles[$role] ?? '不詳';
-         $this->view->render('user_show-modal', ['user'=>$user]);
+         $this->view->render('user_show', ['user'=>$user]);//削除確認に専用の確認画面を使用
+         // $this->view->render('user_show-modal', ['user'=>$user]);//削除確認にモーダルウィンドウを使用
       }else{
          $this->view->render('msg_error', ['message'=>"エラー：対象のユーザ「{$id}」が存在しません。"]);
       }
    }
    
-   /**編集 */
+   /**編集（新規登録と編集に共通する入力画面） */
    public function editAction($id=null)
    {
       $where = "uid='{$id}'";
@@ -84,14 +85,15 @@ class UserController extends Controller
    /** 結果保存 */
    public function saveAction()
    {
-      $data = $_POST;
-   
+      $data = $_POST;   
       $act = $data['act'] ?? 'insert';
+      $uid =  $data['uid'];  
+      
       $fields = ['uid', 'uname', 'upass', 'urole'];
       foreach ( $data as $key=>$_){
          if (!in_array($key, $fields)) unset($data[$key]);
       }
-      $uid =  $data['uid'];      
+
       $where = "uid='$uid'";
       if ($act=='insert') $this->model->insert($data);
       else $this->model->update($data, $where);
@@ -106,7 +108,7 @@ class UserController extends Controller
       if ($user){
          $this->view->render('msg_confirm', [
             'title'=>'削除確認',
-            'message'=>"ユーザ「{$user['uname']}」（{$user['uid']}）を完全に削除します。<br/>続けてもよろしいでしょうか？", 
+            'message'=>"ユーザ「{$user['uname']}」（{$user['uid']}）」を完全に削除します。<br/>続けてもよろしいでしょうか？", 
             'url' => "/u/deleted/?id={$id}", 
             'label'=>'OK'
             ]

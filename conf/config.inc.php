@@ -38,15 +38,5 @@ return [
             'class' => 'User', //デフォルトのクラス名
             'action' => 'home',//デフォルトのアクション
         ],
-    ],
-    
-    'db'  =>[
-        'host'   => 'mysql',
-        'user'   => 'root',
-        'passwd' => 'root',
-        'dbname' => 'wp2026db',
-    ], 
-
-
-   
+    ],   
 ];
