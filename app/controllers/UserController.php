@@ -64,14 +64,14 @@ class UserController extends Controller
          $uroles = $this->model->getCodeDef('uroles');
          $role = $user['urole'];
          $user['urole_name'] = $uroles[$role] ?? '不詳';
-         $this->view->render('user_show', ['user'=>$user]);//削除確認に専用の確認画面を使用
-         // $this->view->render('user_show-modal', ['user'=>$user]);//削除確認にモーダルウィンドウを使用
+         $this->view->render('user_show', ['user'=>$user]);//削除確認用の確認画面を使用
+         // $this->view->render('user_show-modal', ['user'=>$user]);//削除確認のモーダルウィンドウを使用
       }else{
          $this->view->render('msg_error', ['message'=>"エラー：対象のユーザ「{$id}」が存在しません。"]);
       }
    }
    
-   /**編集（新規登録と編集に共通する入力画面） */
+   /**編集入力（新規登録と編集に共通する入力画面） */
    public function editAction($id=null)
    {
       $where = "uid='{$id}'";

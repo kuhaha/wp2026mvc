@@ -1,4 +1,5 @@
 <?php
+session_start();
 //アプリケーション全体の設定ファイルを読み込む
 $conf = require('conf/config.inc.php');
 //サーバー別の設定ファイルを読み込む
