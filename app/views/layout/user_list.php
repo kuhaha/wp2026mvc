@@ -12,7 +12,7 @@
             <td><?= $user['uname'] ?></td>
             <td><?= $user['urole_name'] ?></td>
             <td>
-                <a class="a-btn" href="<?= $_appRoot ?>/u/show?id=<?= $user['uid'] ?>">詳細</a>
+                <a class="a-btn" href="<?= $appRoot ?>/u/show?id=<?= $user['uid'] ?>">詳細</a>
             </td>
         </tr>
     <?php } ?>
