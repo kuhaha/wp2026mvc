@@ -33,7 +33,6 @@ $args = $_GET; // 引数を取得する。例：['id'=>s0002]
 /** 
  解析結果をもとに、MVCモデルを構築する。
 */
-
 // モデルmodel
 require "{$model_dir}/{$class}Model.php";
 $modelClass = "{$class}Model";
@@ -43,7 +42,12 @@ $model = new $modelClass($server['db']);
 require "{$view_dir}/{$class}View.php";
 $viewClass = "{$class}View";
 $view = new $viewClass($base);
-$view->share('_appName_', $conf['app']['name']);//すべてのビューにこの変数をシェアする
+
+$view->share('appName', $conf['app']['name']);//すべてのビューにこの変数(camelCase)をシェアする
+$urole = $_SESSION['urole'] ?? 0;
+$view->share('appMenu', $conf['menu'][$urole] ?? []);
+$view->share('userRole', $urole);
+$view->share('userName', $_SESSION['uname'] ?? 'ゲスト');
 
 //コントローラーcontroller
 require "{$ctrl_dir}/{$class}Controller.php";

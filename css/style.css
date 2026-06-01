@@ -40,6 +40,20 @@ table td {
   background-color: #ffffff; /* 通常セルの背景色 */
   color: #333333; /* 通常セルの文字色 */
 }
+a.menu-item {
+  background-color: #2a2c2b;
+  color: white;
+  display: inline-block;
+  margin-top: 10px;
+  padding: 5px 10px;
+  border-radius: 4px; /* Rounded corners */
+  cursor: pointer; /* Pointer on hover */
+  text-decoration: none;
+}
+.menu-item:hover {
+  background-color: #81ac81; 
+  transform: translateY(-2px); /* Slight lift effect */
+}
 
 .a-btn {
     background-color: #04AA6D; /* Green background */

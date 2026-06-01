@@ -1,15 +1,18 @@
 <!DOCTYPE html> 
 <html><head>
 <meta http-equiv="Content-TYPE" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="<?=$_appRoot_ ?>/css/style.css">
-<link rel="stylesheet" type="text/css" href="<?=$_appRoot_ ?>/css/modal.css">
-<title><?=$_appName_ ?></title>
+<link rel="stylesheet" type="text/css" href="<?=$appRoot ?>/css/style.css">
+<link rel="stylesheet" type="text/css" href="<?=$appRoot ?>/css/modal.css">
+<title><?=$appName ?></title>
 </head>
 <body>
 <div class="wrapper">
 <div id="navbar">
-    <div><?=$_appName_ ?></div>
+    <div><?=$appName ?> - <?= $userName ?></div>
     <div class="push-right">
-        サイトについて　会員登録　ログイン  
+        <a class="menu-item" href="<?= $appRoot ?>">HOME</a>&nbsp
+<?php foreach($appMenu as $label => $action) { ?> 
+    <a class="menu-item" href="<?= $appRoot . $action ?>"><?= $label ?></a>&nbsp;
+<?php } ?>
     </div>
 </div>

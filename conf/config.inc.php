@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'app' =>[
+    'app' => [
         'name' => '教育プログラム配属Webシステム2026',
         'version' => '1.0.1',
         'released' => '2026-5-12',
@@ -11,7 +11,7 @@ return [
         'survey_end' => '2027-3-28',
     ],
 
-    'mvc'=>[
+    'mvc'=> [
         'classes'=> [// MVCクラス：クラスID=>クラス名
             'u' => 'User',    //アカウント  
             's' => 'Student', //学生 
@@ -27,9 +27,11 @@ return [
             'save',   // 保存
             'delete', // 削除確認
             'deleted',// 削除実行
-            'register', // 希望登録
-            'decide', // 配属決定
-            'auth',   // ユーザ認証
+            'register', // 登録
+            'decide',  // 決定
+            'decided', // 結果
+            'summary', // 集計
+            'auth',   // 認証
             'login',  // ログイン
             'logout', // ログアウト
         ],
@@ -39,5 +41,30 @@ return [
             'class' => 'User', //デフォルトのクラス名
             'action' => 'home',//デフォルトのアクション
         ],
-    ],   
+    ],
+
+    'menu'=> [//トップメニュー
+        0 => [  // 未ログイン時
+            //'ユーザ登録' => '/u/register',
+            'ログイン' => '/u/login',
+        ],
+        1 => [   //学生メニュー
+            '成績確認' => '/s/show',
+            '希望登録' => '/w/register',
+            '配属結果' => '/w/decided',
+            'ログアウト' => '/u/logout',
+        ],
+        2 => [   //教員メニュー
+            '希望一覧・配属決定'  => '/w/list',
+            '未登録者' => '/w/noentry',
+            '希望集計' => '/w/summary',
+            'ログアウト' => '/u/logout',
+        ],
+        9 => [   //管理者メニュー
+            'アカウント管理' => '/u/list',
+            '対象学生管理' => '/s/list',
+            '教育プログラム管理' => '/p/list',
+            'ログアウト' => '/u/logout',
+        ]
+    ]   
 ];

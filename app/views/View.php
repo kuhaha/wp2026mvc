@@ -8,12 +8,12 @@ class View
    function __construct(string $base)
    {
       $this->url_base = rtrim($base, '/');
-      $this->shared_vars['_appRoot_'] = $this->url_base;
+      $this->shared_vars['appRoot'] = $this->url_base;
    }
 
    /**  複数の画面間に共通する変数を定義する。
     * 引数：string  $var - 変数名となる文字列。mixed $value - 変数の値。
-    *   他の変数名と被らないように、'_camelCase_'のように初と最初にアンダーバー'_'を付ける 
+    *   他の変数名と被らないように、camelCaseに統一する 
    */       
    public function share(string $var, mixed $value)
    {
@@ -28,7 +28,6 @@ class View
       // 連想配列から展開し変数として利用可能にする。
       // 例：$vars=['foo'=>'hello', 'pi'=>3.14]; extract($vars);
       // 実行後、変数$fooと$piが使えるようになり、それぞれ'hello'と3.14が入っている
-
       extract($data); // 画面ごとに必要なデータを展開。例えば、表示用データ
       extract($this->shared_vars);  // 複数画面共通のデータを展開。例えば、システム名、ユーザ名
 
@@ -39,7 +38,7 @@ class View
       ob_end_flush(); //出力用バッファをフラッシュする
    }
 
-   // 相対パス（例「u/edit/?id=s00xx」）から絶対パスへ変換（例えば、「/wp2026mvc/u/edit/?id=s00xx」）
+   // 相対パス（例「u/edit/?id=s0003」）から絶対パスへ変換（例えば、「/wp2026mvc/u/edit/?id=s00xx」）
    public function at(string $relative_url): string
    {
       return  $this->url_base . '/' . ltrim($relative_url, '/');

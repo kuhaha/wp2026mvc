@@ -35,7 +35,6 @@ class UserController extends Controller
    /**ログアウト */
    public function logoutAction()
    {
-      session_start();
       unset($_SESSION);
       session_destroy();
       $this->view->redirect('/u/login');

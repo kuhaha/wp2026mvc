@@ -1,5 +1,5 @@
 <h3>ユーザアカウント編集</h3>
-<form action="<?= $_appRoot_ ?>/u/save" method="post">
+<form action="<?= $appRoot ?>/u/save" method="post">
 <input type="hidden" name="act" value="<?= $act ?>">
 <table>
     <tr>
