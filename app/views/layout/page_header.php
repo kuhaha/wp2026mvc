@@ -12,7 +12,7 @@
     <div class="push-right">
         <a class="menu-item" href="<?= $appRoot ?>">HOME</a>&nbsp
     <?php foreach($appMenu as $_label => $_action) { ?> 
-    <a class="menu-item" href="<?= $appRoot . $_action ?>"><?= $_label ?></a>&nbsp;
+        <a class="menu-item" href="<?= $appRoot . $_action ?>"><?= $_label ?></a>&nbsp;
     <?php } ?>
     </div>
 </div>
