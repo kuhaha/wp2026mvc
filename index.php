@@ -42,8 +42,8 @@ $model = new $modelClass($server['db']);
 require "{$view_dir}/{$class}View.php";
 $viewClass = "{$class}View";
 $view = new $viewClass($base);
-
-$view->share('appName', $conf['app']['name']);//すべてのビューにこの変数(camelCase)をシェアする
+//複数のビュー間を変数(camelCase)をシェアする
+$view->share('appName', $conf['app']['name']);
 $urole = $_SESSION['urole'] ?? 0;
 $view->share('appMenu', $conf['menu'][$urole] ?? []);
 $view->share('userRole', $urole);
