@@ -1,5 +1,16 @@
 ## 「Webプログラミング演習」サンプルプログラム（MVCモデル）
 
+### MVCモデルによるアプリケーションの行使
+```mermaid
+flowchart LR
+    id1(Client) -- Request --> id2(Dispatcher)
+    id2 -- Call -->  id4 -- Response --> id1
+    id3(View) -- User action --> id4(Controller)
+    id4-- Update -->  id3
+    id4(Controller) -- CRUD --> id5(Model) -- Notify --> id4
+  
+```
+
 ### フォルダ・ファイルの説明
 - `.gitignore`ファイル：`GitHub`によるバージョン管理をしたくないフォルダやファイルを指定する。
 - `.htaccess`ファイル： Apache Webサーバーでディレクトリ単位の設定を格納するファイルである。実在しないフォルダやファイルへのアクセスをすべて`index.php`へ転送するように設定している。これにより、`/u/list/`のようなリクエストは、`index.php`で解析し、解析結果に応じて、適切なコントローラーを選び、アクションを引き起こすことができる。
