@@ -8,7 +8,7 @@ class Dispatcher
     private string $ctrl_dir;
     private string $app_root;// プロジェクト・ホームディレクトリ, 例：/wp2026mvc
 
-    function __construct(string $app_dir, array $conf, array $server)
+    function __construct(array $conf, array $server)
     {
         $this->config = $conf;
         $this->config['db'] = $server['db'];
@@ -46,7 +46,7 @@ class Dispatcher
     public function run()
     { 
         $res = $this->parseRequest();
-        extract($res);//配列から変数を展開。以下3行で行ったことと同じ
+        extract($res);//配列から変数を展開。以下3行と同じ
         // $class = $res['class'];
         // $action = $res['action'];
         // $args = $res['args'];

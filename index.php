@@ -8,7 +8,6 @@ $conf = require('conf/config.inc.php');
 $server = require('conf/server-development.inc.php');  //開発用サーバーを使用する場合
 // $server = require('conf/server-deployment.inc.php');//公開用サーバーを使用する場合
 
-$app_dir = 'app';
-require "{$app_dir}/Dispatcher.php";
-$dispatcher = new Dispatcher($app_dir, $conf, $server);
+require "app/Dispatcher.php";
+$dispatcher = new Dispatcher($conf, $server);
 $dispatcher->run();
