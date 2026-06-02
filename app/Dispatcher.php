@@ -62,8 +62,9 @@ class Dispatcher
         $view = new $viewClass($this->app_root);
 
         //複数のビュー間に変数(camelCase)をシェアする
-        $view->share('appName', $this->config['app']['name']);
         $urole = $_SESSION['urole'] ?? 0;
+        $view->share('appRoot', $this->app_root);
+        $view->share('appName', $this->config['app']['name']);
         $view->share('appMenu', $this->config['menu'][$urole] ?? []);
         $view->share('userRole', $urole);
         $view->share('userName', $_SESSION['uname'] ?? 'ゲスト');

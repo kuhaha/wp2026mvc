@@ -17,7 +17,7 @@ class View
    function __construct(string $base)
    {
       $this->app_root = rtrim($base, '/');
-      $this->shared_vars['appRoot'] = $this->app_root;
+      // $this->shared_vars['appRoot'] = $this->app_root;
    }
 
    // fontawesome
