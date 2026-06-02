@@ -6,6 +6,6 @@ return [
         'host'   => 'localhost',
         'user'   => 'k24rs999',  //各自KsLifeユーザIDと同じように修正して下さい
         'passwd' => 'Ksu#DB2026',//全員同じ
-        'dbname' => 'wp2026db',
+        'dbname' => 'wp2026k24rs999db',
     ], 
 ];
