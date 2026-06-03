@@ -7,8 +7,8 @@ return [
         'released' => '2026-5-12',
         'developer'=> 'hoge@qmail.com',
 
-        'survey_start' => '2027-3-1',
-        'survey_end' => '2027-3-28',
+        'survey_start' => '2027-3-1 10:00:00',
+        'survey_end' => '2027-3-28 18:00:00',
     ],
 
     'mvc'=> [
