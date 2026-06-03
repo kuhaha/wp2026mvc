@@ -51,8 +51,8 @@ class UserController extends Controller
          $role = $users[$i]['urole'];
          $users[$i]['urole_name'] = $uroles[$role] ?? '不詳';
       }
-      //$this->view->render('user_list', ['users' => $users]);
-      $this->view->render('user_list_img', ['users' => $users]);
+      $this->view->render('user_list', ['users' => $users]);
+      //$this->view->render('user_list_img', ['users' => $users]);
    }
 
    /**詳細確認 */
