@@ -27,10 +27,12 @@ return [
             'save',   // 保存
             'delete', // 削除確認
             'deleted',// 削除実行
-            'register', // 登録
-            'decide',  // 決定
-            'decided', // 結果
+            'register',   // 希望登録（画面）
+            'registered', // 希望保存（DB保存）
+            'decide',  // 配属先登録（画面）
+            'decided', // 配属先保存（DB保存）
             'summary', // 集計
+            'noentry', // 未登録者
             'auth',   // 認証
             'login',  // ログイン
             'logout', // ログアウト
@@ -49,9 +51,8 @@ return [
             'ログイン' => '/u/login',
         ],
         1 => [   //学生メニュー
-            '成績確認' => '/s/show',
+            '成績・配属結果確認' => '/s/show',
             '希望登録' => '/w/register',
-            '配属結果' => '/w/decided',
             'ログアウト' => '/u/logout',
         ],
         2 => [   //教員メニュー
