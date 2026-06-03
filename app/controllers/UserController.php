@@ -64,8 +64,8 @@ class UserController extends Controller
          $uroles = $this->model->getCodeDef('uroles');
          $role = $user['urole'];
          $user['urole_name'] = $uroles[$role] ?? '不詳';
-         $this->view->render('user_show', ['user'=>$user]);//削除確認用の確認画面を使用
-         // $this->view->render('user_show-modal', ['user'=>$user]);//削除確認のモーダルウィンドウを使用
+         $this->view->render('user_show', ['user'=>$user]);//削除ボタンを押すと確認画面を表示
+         // $this->view->render('user_show-modal', ['user'=>$user]);//削除ボタンを押すとモーダルウィンドウを表示
       }else{
          $this->view->render('msg_error', ['message'=>"エラー：対象のユーザ「{$id}」が存在しません。"]);
       }
