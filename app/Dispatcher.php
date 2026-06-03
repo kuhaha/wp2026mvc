@@ -35,7 +35,7 @@ class Dispatcher
         
         $c = $parts[0] ?? $defaults['c'];   // クラスIDを抽出する。例：u
         $res['class'] = $classes[$c] ?? $defaults['class']; // 実際のクラス名を特定する。例：User
-        $res['action'] = $parts[1] ?? $defaults['action'];  // アクションを抽出する。例：edit ※存在しないアクションはデフォルトlistとする
+        $res['action'] = $parts[1] ?? $defaults['action'];  // アクションを抽出する。例：edit ※デフォルトはlist
         $res['args'] = $_GET; // 引数を取得する。例：['id'=>s0002]
         return $res;
     }
