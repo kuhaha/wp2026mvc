@@ -1,6 +1,6 @@
 ## 「Webプログラミング演習」サンプルプログラム（MVCモデル）
 
-### 1. MVCモデルによるアプリケーションの行使
+### 1. MVCモデルによるアプリケーションの構造
 ```mermaid
 flowchart LR
     id1(Client) -- Request --> id2(Dispatcher)
