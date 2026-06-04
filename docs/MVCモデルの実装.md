@@ -80,6 +80,51 @@ URL短縮やセキュリティ対策等の目的で、各機能へアクセス�
 
 ## 6. アカウント管理の各機能の実装方法
 
+
+### ユーザ認証（ログイン）
+
+```mermaid
+%%{init:{'theme':'forest'}}%%
+sequenceDiagram
+	actor B as ブラウザ
+    participant D as リクエスト解析<br>(Dispatcher)
+    participant C as コントローラー<br>UserController
+    participant M as モデル<br>(UserModel)
+    participant V as ビュー<br>(UserView)
+    B->>D: GET /u/login
+ 	D->>C: アクションを選択する<br>UserController::loginAction() 
+ 	C->>V: ログイン画面を描画する<br>UserView::render('user_login')
+ 	V-->>B: 画面出力
+ 	B->>D: POST /u/auth
+ 	D->>C: アクションを選択する<br>UserController::authAction()
+    C->>M: パスワード照合を指示する<br>UserModel::auth()
+    M-->>C: 照合結果を返す
+    C-->>B: UserView::redirect('/u/home') 成功時画面転送
+    C->>V: 失敗時エラー表示 UserView::render('msg_error')
+    V-->>B: 画面出力
+   
+```
+
+### ユーザ認証（ログアウト）
+
+```mermaid
+　%%{init:{'theme':'forest'}}%%
+ sequenceDiagram
+    actor B as ブラウザ
+    participant D as リクエスト解析<br>(Dispatcher)
+    participant C as コントローラー<br>UserController
+    participant M as モデル<br>(UserModel)
+    participant V as ビュー<br>(UserView)
+    B->>D: GET /u/logout
+    D->>C: アクションを選択する<br>UserController::logoutAction() 
+    C-->>B: 画面転送 UserView::redirect('/u/home')
+    B->>D: GET /u/home
+    D->>C: アクションを選択する<br>UserController::homeAction()
+    C->>V: ホーム画面を描画する UserView::render('user_home')
+    V-->>B: 画面出力
+    
+```
+
 ### アカウント一覧
 
 ```mermaid
@@ -116,8 +161,6 @@ URL短縮やセキュリティ対策等の目的で、各機能へアクセス�
     V-->>B: 画面出力
 ```
 
-
-
 ### アカウント編集
 
 ```mermaid
@@ -143,60 +186,6 @@ URL短縮やセキュリティ対策等の目的で、各機能へアクセス�
 
 ```
 
-
-
-
-
-
-
-### ログイン
-
-
-
-
-
-```mermaid
-%%{init:{'theme':'forest'}}%%
-sequenceDiagram
-	actor B as ブラウザ
-    participant D as リクエスト解析<br>(Dispatcher)
-    participant C as コントローラー<br>UserController
-    participant M as モデル<br>(UserModel)
-    participant V as ビュー<br>(UserView)
-    B->>D: GET /u/login
- 	D->>C: アクションを選択する<br>UserController::loginAction() 
- 	C->>V: ログイン画面を描画する<br>UserView::render('user_login')
- 	V-->>B: 画面出力
- 	B->>D: POST /u/auth
- 	D->>C: アクションを選択する<br>UserController::authAction()
-    C->>M: パスワード照合を指示する<br>UserModel::auth()
-    M-->>C: 照合結果を返す
-    C-->>B: UserView::redirect('/u/home') 成功時画面転送
-    C->>V: 失敗時エラー表示 UserView::render('msg_error')
-    V-->>B: 画面出力
-   
-    
-```
-
-### ログアウト
-
-```mermaid
-　%%{init:{'theme':'forest'}}%%
- sequenceDiagram
-    actor B as ブラウザ
-    participant D as リクエスト解析<br>(Dispatcher)
-    participant C as コントローラー<br>UserController
-    participant M as モデル<br>(UserModel)
-    participant V as ビュー<br>(UserView)
-    B->>D: GET /u/logout
-    D->>C: アクションを選択する<br>UserController::logoutAction() 
-    C-->>B: 画面転送 UserView::redirect('/u/home')
-    B->>D: GET /u/home
-    D->>C: アクションを選択する<br>UserController::homeAction()
-    C->>V: ホーム画面を描画する UserView::render('user_home')
-    V-->>B: 画面出力
-    
-```
 
 ### アカウント削除
 
