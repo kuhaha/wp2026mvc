@@ -1,4 +1,5 @@
-[TOC]
+- Table of Content
+{:toc}
 
 # MVCモデル実装の詳細
 
