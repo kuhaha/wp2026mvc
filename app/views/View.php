@@ -4,26 +4,10 @@ class View
    private string $app_root = '';
    private array $shared_vars = [];
 
-   private const array ICONS = [ //アイコン文字列。参考 https://fontawesome.com/
-      'home'=>'<i class="fa-regular fa-house"></i>',
-      'file'=>'<i class="fa-regular fa-file"></i>',
-      'folder'=>'<i class="fa-regular fa-folder"></i>',
-      'home-solid'=>'<i class="fa-solid fa-house"></i>',
-      'file-solid'=>'<i class="fa-solid fa-file"></i>',
-      'folder-soloid'=>'<i class="fa-solid fa-folder"></i>',
-   ] ;   
-   
-
    function __construct(string $base)
    {
       $this->app_root = rtrim($base, '/');
       // $this->shared_vars['appRoot'] = $this->app_root;
-   }
-
-   // fontawesome
-   public function icon(string $name)
-   {
-      return self::ICONS[$name] ?? '';
    }
 
    /**  複数の画面間に共通する変数を定義する。
