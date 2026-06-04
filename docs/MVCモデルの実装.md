@@ -1,6 +1,3 @@
-- Table of Content
-{:toc}
-
 # MVCモデル実装の詳細
 
 ## 1. URLパターン
