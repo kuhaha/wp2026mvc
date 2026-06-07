@@ -1,6 +1,7 @@
 <?php
 require_once 'Controller.php';
 
-class StudentController extends Controller {
+class StudentController extends Controller
+{
     
 }

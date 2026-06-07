@@ -88,16 +88,19 @@ class UserController extends Controller
       $data = $_POST;   
       $act = $data['act'] ?? 'insert';
       $uid =  $data['uid'];  
-      
-      $fields = ['uid', 'uname', 'upass', 'urole'];
-      foreach ( $data as $key=>$_){
-         if (!in_array($key, $fields)) unset($data[$key]);
-      }
+      if ($data['upass']!=$data['upass2']){
+         $this->view->render('msg_error', ['message'=>"エラー：パスワードが一致しません。"]);
+      }else{
+         $fields = ['uid', 'uname', 'upass', 'urole'];
+         foreach ( $data as $key=>$_){
+            if (!in_array($key, $fields)) unset($data[$key]);
+         }
 
-      $where = "uid='$uid'";
-      if ($act=='insert') $this->model->insert($data);
-      else $this->model->update($data, $where);
-      $this->view->redirect('/u/list');
+         $where = "uid='$uid'";
+         if ($act=='insert') $this->model->insert($data);
+         else $this->model->update($data, $where);
+         $this->view->redirect('/u/list');
+      }
    }
 
    /**  削除確認 */

@@ -1,6 +1,7 @@
 <?php
 require_once 'Controller.php';
 
-class ProgramController extends Controller {
+class ProgramController extends Controller 
+{
     
 }

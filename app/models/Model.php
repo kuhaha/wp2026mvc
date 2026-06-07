@@ -34,6 +34,7 @@ abstract class Model
       $rs = $this->db->query($sql);
       return $rs ? $rs->fetch_all( MYSQLI_ASSOC) : [];
    } 
+
    // 更新類SQLを実行（特定のテーブルに依存しない）
    public function excute(string $sql): int
    {
@@ -102,6 +103,7 @@ abstract class Model
       $sql = sprintf($sql, $this->table, $set_values, $where);
       return $this->excute($sql);
    }
+   
    // 文字列をサニタイズ（無害化）する
    public function sanitize(string $str): string
    {

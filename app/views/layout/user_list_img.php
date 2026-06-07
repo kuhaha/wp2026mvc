@@ -3,10 +3,12 @@
     display: flex;                 /* 横並びにする */
     justify-content: flex-start;    /* 左寄せ */
     gap: 10px;                     /* 要素間の余白 */
+    border: 1px solid #999393;
+    border-radius: 10px;
+    margin: 5px;
 }
 .box {
     padding: 10px 20px;
-    border-bottom: 1px solid #999393;
 }
 </style>
 
