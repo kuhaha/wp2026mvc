@@ -41,9 +41,12 @@ class UserController extends Controller
    }
 
    /**ユーザ一覧 */
-   public function listAction()
+   public function listAction($page=0,$orderby='')
    {
-      $users = $this->model->getList();
+      $page_length = $this->page_length;
+      $n = $page > 0 ? ($page - 1) * $page_length: 0;
+      $m = $page > 0 ? $page_length : 0;
+      $users = $this->model->getList(where:'1', orderby:$orderby,limit:$m,offset:$n );
       
       //各ユーザの種別（整数のコード）から日本語名を求める
       $uroles = $this->model->getCodeDef('uroles');

@@ -74,6 +74,7 @@ class Dispatcher
         $controllerClass = "{$class}Controller";
         $controller = new $controllerClass($model, $view);
         $actionFunc = "{$action}Action";
+        $controller->setPageLength(10);//一覧画面の表示件数（ページネーション）
 
         //アクションを呼び出す（dispatch）
         if (method_exists($controller, $actionFunc)) {
