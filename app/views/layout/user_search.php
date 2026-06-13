@@ -1,6 +1,6 @@
 <h3>ユーザアカウント一覧</h3>
 <form action="<?= $appRoot ?>/u/search" method="post">
-<?= TagHelper::radio($uroles, 'urole',$urole) ?><br>
+<?= TagHelper::radio($uroles, 'urole', $urole) ?><br>
 <input type="text" name="keywd" value="<?= $keywd ?>" placeholder="検索語入力">
 <input type="submit" value="検　索">
 </form>

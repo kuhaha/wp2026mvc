@@ -72,7 +72,7 @@ class TagHelper
     {
         $attr = '';
         foreach ($attributes as $key => $value){
-            $attr .= "{$key}='{$value}' ";
+            $attr .= "{$key}=\"{$value}\" ";
         }
         $attr = trim($attr);
         $open_tag = $void ? "<{$tagname} {$attr}/>" : "<{$tagname} {$attr}>";
