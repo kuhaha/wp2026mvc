@@ -95,14 +95,16 @@ class UserController extends Controller
 
    
     /**並べ替え */
-   public function sortAction($order='uid')
+   public function sortAction($order='')
    {
       $columns = ['uid', 'uname', 'urole'];
-      $order = in_array($order, $columns) ? $order : 'uid';
-      $descending = $_SESSION['sort_descending'] ?? false;
-      $_SESSION['sort_descending'] = !$descending;
-      $desc = $descending ? 'DESC' : 'ASC';
-      $orderby = "{$order} {$desc}";
+      $orderby = '';
+      if (in_array($order, $columns) ){
+         $descending = $_SESSION['sort_descending'] ?? false;
+         $_SESSION['sort_descending'] = !$descending;
+         $desc = $descending ? 'DESC' : 'ASC';
+         $orderby = "{$order} {$desc}";
+      }
       $where = '1'; 
       $users = $this->model->getList($where, $orderby);
       $uroles = $this->model->getCodeDef('uroles');
