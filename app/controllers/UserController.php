@@ -54,6 +54,65 @@ class UserController extends Controller
       //$this->view->render('user_list_img', ['users' => $users]);
    }
 
+   /**ページ付きユーザ一覧 */
+   public function pageAction($n=0)
+   {
+      $limit = 6; // 1ページに表示する最大行数
+      $offset = $n > 0 ? ($n - 1) * $limit : 0;//0から数えて何行目から始まるか
+      $where = '1'; 
+      $orderby = '';
+      $users = $this->model->getList($where, $orderby, $limit, $offset);
+      $uroles = $this->model->getCodeDef('uroles');
+      for ($i=0; $i<count($users); $i++){
+         $role = $users[$i]['urole'];
+         $users[$i]['urole_name'] = $uroles[$role] ?? '不詳';
+      }
+
+      //データ数を調べ、必要なページ数を求める。
+      $_users = $this->model->getList();
+      $n_users = count($_users);
+      $pages = ceil($n_users / $limit);//最大ページ数
+
+      $this->view->render('user_page', ['users' => $users, 'page'=> $n, 'pages'=>$pages]);
+   }
+
+    /**ユーザ検索・絞り込み */
+   public function searchAction()
+   {
+      $urole = $_POST['urole'] ?? 0;
+      $keywd = $_POST['keywd'] ?? '';
+      $where = $urole > 0 ? "urole={$urole}" : '1';
+      $where .= " AND uname LIKE '%{$keywd}%'";
+      $users = $this->model->getList($where);
+      $uroles = $this->model->getCodeDef('uroles');
+      $uroles[0] = 'すべて';
+      for ($i=0; $i<count($users); $i++){
+         $role = $users[$i]['urole'];
+         $users[$i]['urole_name'] = $uroles[$role] ?? '不詳';
+      }
+      $this->view->render('user_search', ['users' => $users, 'uroles'=>$uroles, 'keywd'=>$keywd,'urole'=>$urole]);
+   }
+
+   
+    /**並べ替え */
+   public function sortAction($order='uid')
+   {
+      $columns = ['uid', 'uname', 'urole'];
+      $order = in_array($order, $columns) ? $order : 'uid';
+      $descending = $_SESSION['sort_descending'] ?? false;
+      $_SESSION['sort_descending'] = !$descending;
+      $desc = $descending ? 'DESC' : 'ASC';
+      $orderby = "{$order} {$desc}";
+      $where = '1'; 
+      $users = $this->model->getList($where, $orderby);
+      $uroles = $this->model->getCodeDef('uroles');
+      for ($i=0; $i<count($users); $i++){
+         $role = $users[$i]['urole'];
+         $users[$i]['urole_name'] = $uroles[$role] ?? '不詳';
+      }
+      $this->view->render('user_sort', ['users' => $users]);
+   }
+
    /**詳細確認 */
    public function showAction($id)
    {

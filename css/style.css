@@ -1,7 +1,9 @@
 /* ページネーション ここから*/
 .pagination {
   display: flex;
+  list-style: none;
   gap: 8px;
+  padding-left: 4px;
   margin-top: 20px;
 }
 
@@ -16,6 +18,11 @@
 
 .pagination a:hover {
   background-color: #f5f5f5;
+}
+
+.pagination a[aria-current="page"] {
+  background-color: #333333;
+  color: white;
 }
 /*ページネーション ここまで*/
 
