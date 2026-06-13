@@ -19,10 +19,11 @@
 </table>
 <!--ページネーション-->
 <ul class="pagination">
-<?php for ($p = 1; $p<=$pages; $p++ ) { ?>
+<?php for ($p = 1; $p <= $pages; $p++ ) { ?>
     <li>
     <a href="<?= $appRoot ?>/u/page?n=<?= $p ?>" 
-      <?= $p==$page ? 'aria-current="page"' : '' ?>><?= $p ?>
+        <?= $p==$page ? 'aria-current="page"' : '' ?>
+        ><?= $p ?>
     </a>
     </li>
 <?php } ?>
