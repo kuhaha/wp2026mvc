@@ -21,9 +21,8 @@
 <ul class="pagination">
 <?php for ($p = 1; $p<=$pages; $p++ ) { ?>
     <li>
-    <a 
-        href="<?= $appRoot ?>/u/page?n=<?= $p ?>" 
-        aria-current="<?= $p==$page?'page':'' ?>"><?= $p ?>
+    <a href="<?= $appRoot ?>/u/page?n=<?= $p ?>" 
+      <?= $p==$page ? 'aria-current="page"' : '' ?>><?= $p ?>
     </a>
     </li>
 <?php } ?>
