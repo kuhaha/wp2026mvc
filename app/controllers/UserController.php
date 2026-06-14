@@ -77,7 +77,9 @@ class UserController extends Controller
       $where = "uid='{$id}'";
       $user = $this->model->getDetail($where);
       $act = $user ? 'update' : 'insert';
-      $user = $user ?? ['uid'=>'', 'uname'=>'名前なし', 'upass'=>'', 'urole'=>1];
+      if (!$user){ 
+         $user = ['uid'=>'', 'uname'=>'名前なし', 'upass'=>'', 'urole'=>1];
+      }
       $uroles = $this->model->getCodeDef('uroles');      
       $this->view->render('user_edit', ['act'=>$act, 'user' => $user, 'uroles'=>$uroles]);
    }
