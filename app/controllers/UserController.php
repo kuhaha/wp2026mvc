@@ -167,6 +167,13 @@ class UserController extends Controller
    /**  削除確認 */
    public function deleteAction($id)
    {
+      //---ここから--実行権限チェック---
+      if (!isset($_SESSION['urole'])){
+         return $this->errorAction('この機能はログインしないと利用できません!');
+      }elseif($_SESSION['urole'] != 9 ){
+         return $this->errorAction('この機能は管理者でないと利用できません!');
+      }
+      //---ここから--実行権限チェック---
       $where = "uid='{$id}'";
       $user = $this->model->getDetail($where);
       if ($user){
