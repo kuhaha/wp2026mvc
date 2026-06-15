@@ -93,7 +93,7 @@ class UserController extends Controller
       $this->view->render('user_search', ['users' => $users, 'uroles'=>$uroles, 'keywd'=>$keywd,'urole'=>$urole]);
    }
    
-    /**並べ替え */
+   /**並べ替え */
    public function sortAction($order='')
    {
       $columns = ['uid', 'uname', 'urole'];
