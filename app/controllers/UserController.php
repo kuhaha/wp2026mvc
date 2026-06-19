@@ -173,7 +173,7 @@ class UserController extends Controller
       }elseif($_SESSION['urole'] != 9 ){
          return $this->errorAction('この機能は管理者でないと利用できません!');
       }
-      //---ここから--実行権限チェック---
+      //---ここまで--実行権限チェック---
       $where = "uid='{$id}'";
       $user = $this->model->getDetail($where);
       if ($user){
