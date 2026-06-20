@@ -1,0 +1,13 @@
+   </div>
+    </main>
+    <footer class="footer mt-auto py-3 bg-body-tertiary">
+      <div class="container">
+        <span class="text-body-secondary"
+          >&copy; Kyushu Sangyo University 2026</span
+        >
+      </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" 
+    ></script>
+  </body>
+</html>
