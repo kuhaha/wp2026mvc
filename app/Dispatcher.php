@@ -65,7 +65,29 @@ class Dispatcher
         $urole = $_SESSION['urole'] ?? 0;
         $view->share('appRoot', $this->app_root);
         $view->share('appName', $this->config['app']['name']);
-        $view->share('appMenu', $this->config['menu'][$urole] ?? []);
+        $view->share('appMenu', $this->config['menu'][$urole] ?? []); // 通常メニューの場合
+       
+        // ここから bootstrap5 対応メニューバー
+        /*
+        $use_menu = $this->config['bs5menu'];   // BootStrapメニュー（bs5menu）の場合 
+        $menu['public'] = $use_menu['common']['public'];
+        if ($urole > 0){
+            $names = [1=>'学生', 2=>'教員', 9=>'管理者',];
+            $menu['common'] = $use_menu['common']['after-login'];
+            $menu['login'] = ['ログアウト'=>'/u/logout'];
+            $menu['dropdown'] =  [
+                'name'=> $names[$urole] ?? 'ゲスト',
+                'items'=>$use_menu['dropdown'][$urole]??[],
+            ];
+        }else{
+            $menu['common'] = $use_menu['common']['before-login'];
+            $menu['login'] = ['ログイン'=>'/u/login'];
+            $menu['dropdown'] = [];
+        }
+        $view->share('appMenu', $menu);
+        */
+        // ここまで　bootstrap5 対応メニューバー  
+
         $view->share('userRole', $urole);
         $view->share('userName', $_SESSION['uname'] ?? 'ゲスト');
 
