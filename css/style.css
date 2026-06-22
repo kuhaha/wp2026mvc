@@ -1,6 +1,21 @@
 @import "pagination.css";
 /* @import "modal.css"; */
 
+/* ここから CSSカスタマイズ*/
+body{
+  background-color: #52c3ba;
+}
+h3 {
+  border-bottom:4px solid #098558;
+  border-left:10px solid #0d9563;
+  border-radius:5px; 
+  background-color:#FFFFFF;
+  padding:.3em;
+  margin:0.5em 0 .5em 0;
+}
+
+/* ここまで CSSカスタマイズ*/
+
 .wrapper {
   margin-right: auto; 
   margin-left:  auto; 

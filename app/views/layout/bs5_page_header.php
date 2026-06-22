@@ -1,12 +1,12 @@
-<!doctype html>
-<html lang="en" class="h-100" data-bs-theme="auto">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="" />
-    <title><?= $appName ?></title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" type="text/css" href="<?= $appRoot ?>/css/style.css"/>
+<!DOCTYPE html>
+<html lang="ja" class="h-100" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="" />
+  <title><?= $appName ?></title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" type="text/css" href="<?= $appRoot ?>/css/style.css"/>
 </head>
   <body class="d-flex flex-column h-100">
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
@@ -26,26 +26,23 @@
       ></path>
       </symbol>
     </svg>
-    <nav
-        class="navbar navbar-expand-sm navbar-dark bg-dark"
-        aria-label="Third navbar example"
-      >
-        <div class="container-fluid">
-          <a class="navbar-brand" href="<?= $appRoot ?>"><?= $appName ?> - <?= $userName ?></a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarsExample03"
-            aria-controls="navbarsExample03"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="<?= $appRoot ?>"><?= $appName ?> - <?= $userName ?></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarsExample03"
+          aria-controls="navbarsExample03"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-          <div class="containter"> 
-          <div class="collapse navbar-collapse">
+        <div class="containter"> 
+          <div class="collapse navbar-collapse" id="navbarsExample03">
             <ul class="navbar-nav me-auto mb-2 mb-sm-0">
               <li class="nav-item">
                 <a class="nav-link" href="<?= $appRoot ?>">
@@ -103,9 +100,9 @@
             </form>
           -->
           </div>
-          </div>
         </div>
-      </nav>
+      </div>
+    </nav>
     <!-- Begin page content -->
     <main>
     <div class="container">   
